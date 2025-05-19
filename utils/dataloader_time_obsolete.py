@@ -83,7 +83,7 @@ class Dataloader:
                     # Apply mapping to original dataframe based on date
                     mask = (df_temp[group_by] == name)
                     df_temp.loc[mask, col] = df_temp.loc[mask, time_index_column].map(
-                        lambda x: value_map.get(x) if pd.notna(x) else None
+                        lambda x: value_map.get(x) if pd.notna(x) else np.nan
                     )
 
         # Update the original dataframe with interpolated values
