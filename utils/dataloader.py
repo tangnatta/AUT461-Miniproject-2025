@@ -11,7 +11,7 @@ class Dataloader:
             'Netherlands', 'United Kingdom'
         }
         self.country_name_mapping = {
-            "Republic of Ireland": "Ireland",
+            "Republic Of Ireland": "Ireland",
         }
 
     def normalize_country_name(self, country: str) -> str:
