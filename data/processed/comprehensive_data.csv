@@ -1,4 +1,4 @@
-ID,country,confirmed_cases,deaths_cases,recovered_cases,western_europe
+ID,country,confirmed_cases,deaths_cases,recovered_cases,is_western_europe
 1.0,Peru,4524748.0,220831.0,4303917.0,False
 2.0,Bulgaria,1329266.0,38700.0,1290566.0,False
 3.0,Bosnia and Herzegovina,403638.0,16388.0,387250.0,False

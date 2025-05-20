@@ -89,7 +89,7 @@ class Dataloader:
             'Recovered': 'recovered_cases'
         }, inplace=True)
 
-        df['western_europe'] = df['country'].apply(self.is_western_europe)
+        df['is_western_europe'] = df['country'].apply(self.is_western_europe)
 
         return df
 
@@ -135,6 +135,8 @@ class Dataloader:
         df['country'] = df['entity'].str.split(" - ").str[0]
         df['tested_type'] = df['entity'].str.split(" - ").str[1]
 
+        df['is_western_europe'] = df['country'].apply(self.is_western_europe)
+
         # Columns to interpolate
         cols_to_interpolate = [
             'daily_change', 'total_tests', 'total_tests_per_thousand',
@@ -179,6 +181,8 @@ class Dataloader:
         # convert date to datetime
         df['date'] = pd.to_datetime(
             df['date'], format='%Y-%m-%d', errors='coerce')
+
+        df['is_western_europe'] = df['country'].apply(self.is_western_europe)
 
         # remove duplication of "other" variants and "non-who" variants
         df['variant'] = df['variant'].replace(
@@ -229,6 +233,8 @@ class Dataloader:
         df['date'] = pd.to_datetime(
             df['date'], format='%Y-%m-%d', errors='coerce')
 
+        df['is_western_europe'] = df['country'].apply(self.is_western_europe)
+
         # Columns to interpolate
         cols_to_interpolate = [
             'total_vaccinations', 'people_vaccinated', 'people_fully_vaccinated',
@@ -271,6 +277,8 @@ class Dataloader:
         # convert date to datetime
         df['date'] = pd.to_datetime(
             df['date'], format='%Y-%m-%d', errors='coerce')
+
+        df['is_western_europe'] = df['country'].apply(self.is_western_europe)
 
         return df
 
