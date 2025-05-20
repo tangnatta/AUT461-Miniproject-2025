@@ -10,6 +10,25 @@ class Dataloader:
             'Belgium', 'France', 'Ireland', 'Luxembourg', 'Monaco',
             'Netherlands', 'United Kingdom'
         }
+        self.normalize_country_name = {
+            "Republic of Ireland": "Ireland",
+        }
+
+    def normalize_country_name(self, country: str) -> str:
+        """
+        Normalize the country name to a standard format.
+
+        Args:
+            country (str): The name of the country.
+
+        Returns:
+            str: The normalized country name.
+        """
+        country = country.title().strip()
+        if country in self.normalize_country_name:
+            return self.normalize_country_name[country].title()
+
+        return country
 
     def is_western_europe(self, country: str) -> bool:
         """
@@ -89,6 +108,7 @@ class Dataloader:
             'Recovered': 'recovered_cases'
         }, inplace=True)
 
+        df['country'] = df['country'].apply(self.normalize_country_name)
         df['is_western_europe'] = df['country'].apply(self.is_western_europe)
 
         return df
@@ -132,6 +152,7 @@ class Dataloader:
         df['date'] = pd.to_datetime(
             df['date'], format='%Y-%m-%d', errors='coerce')
 
+        df['country'] = df['country'].apply(self.normalize_country_name)
         df['country'] = df['entity'].str.split(" - ").str[0]
         df['tested_type'] = df['entity'].str.split(" - ").str[1]
 
@@ -182,6 +203,7 @@ class Dataloader:
         df['date'] = pd.to_datetime(
             df['date'], format='%Y-%m-%d', errors='coerce')
 
+        df['country'] = df['country'].apply(self.normalize_country_name)
         df['is_western_europe'] = df['country'].apply(self.is_western_europe)
 
         # remove duplication of "other" variants and "non-who" variants
@@ -233,6 +255,7 @@ class Dataloader:
         df['date'] = pd.to_datetime(
             df['date'], format='%Y-%m-%d', errors='coerce')
 
+        df['country'] = df['country'].apply(self.normalize_country_name)
         df['is_western_europe'] = df['country'].apply(self.is_western_europe)
 
         # Columns to interpolate
@@ -278,6 +301,7 @@ class Dataloader:
         df['date'] = pd.to_datetime(
             df['date'], format='%Y-%m-%d', errors='coerce')
 
+        df['country'] = df['country'].apply(self.normalize_country_name)
         df['is_western_europe'] = df['country'].apply(self.is_western_europe)
 
         return df
