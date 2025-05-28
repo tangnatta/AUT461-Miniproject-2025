@@ -1,7 +1,7 @@
 ID,country,confirmed_cases,deaths_cases,recovered_cases,is_western_europe
 1.0,Peru,4524748.0,220831.0,4303917.0,False
 2.0,Bulgaria,1329266.0,38700.0,1290566.0,False
-3.0,Bosnia and Herzegovina,403638.0,16388.0,387250.0,False
+3.0,Bosnia And Herzegovina,403638.0,16388.0,387250.0,False
 4.0,Hungary,2230381.0,49051.0,2181330.0,False
 5.0,North Macedonia,350589.0,9977.0,340612.0,False
 6.0,Slovenia,1355887.0,10056.0,1345831.0,False
@@ -28,7 +28,7 @@ ID,country,confirmed_cases,deaths_cases,recovered_cases,is_western_europe
 27.0,Belgium,4861717.0,34339.0,4827378.0,True
 28.0,Paraguay,735759.0,19880.0,715879.0,False
 29.0,Argentina,10131586.0,130857.0,10000729.0,False
-30.0,Trinidad and Tobago,191496.0,4390.0,187106.0,False
+30.0,Trinidad And Tobago,191496.0,4390.0,187106.0,False
 31.0,European Union,185636059.0,1261370.0,184374689.0,False
 32.0,Russia,24158502.0,402821.0,23755681.0,False
 33.0,Ukraine,5531524.0,109920.0,5421604.0,False
@@ -61,7 +61,7 @@ ID,country,confirmed_cases,deaths_cases,recovered_cases,is_western_europe
 60.0,Lebanon,1239904.0,10947.0,1228957.0,False
 61.0,Andorra,48015.0,159.0,47856.0,False
 62.0,Panama,1044336.0,8704.0,1035632.0,False
-63.0,Republic of Ireland,1736068.0,9604.0,1726464.0,False
+63.0,Ireland,1736068.0,9604.0,1726464.0,True
 64.0,Grenada,19693.0,238.0,19455.0,False
 65.0,Monaco,17181.0,67.0,17114.0,True
 66.0,Bolivia,1212131.0,22387.0,1189744.0,False
@@ -80,14 +80,14 @@ ID,country,confirmed_cases,deaths_cases,recovered_cases,is_western_europe
 79.0,Guyana,74125.0,1301.0,72824.0,False
 80.0,Seychelles,51686.0,172.0,51514.0,False
 81.0,Namibia,172404.0,4108.0,168296.0,False
-82.0,Cura�ao,45883.0,305.0,45578.0,False
-83.0,Antigua and Barbuda,9106.0,146.0,8960.0,False
+82.0,Cura�Ao,45883.0,305.0,45578.0,False
+83.0,Antigua And Barbuda,9106.0,146.0,8960.0,False
 84.0,Luxembourg,391378.0,1000.0,390378.0,True
 85.0,Caribbean Netherlands,11922.0,41.0,11881.0,False
 86.0,Jersey,66391.0,161.0,66230.0,False
-87.0,Collectivity of Saint Martin,12324.0,46.0,12278.0,False
+87.0,Collectivity Of Saint Martin,12324.0,46.0,12278.0,False
 88.0,Canada,4791646.0,54329.0,4737317.0,False
-89.0,Isle of Man,38008.0,116.0,37892.0,False
+89.0,Isle Of Man,38008.0,116.0,37892.0,False
 90.0,French Guiana,98041.0,413.0,97628.0,False
 91.0,Israel,4841558.0,12707.0,4828851.0,False
 92.0,United States Virgin Islands,25389.0,132.0,25257.0,False
@@ -95,7 +95,7 @@ ID,country,confirmed_cases,deaths_cases,recovered_cases,is_western_europe
 94.0,Jamaica,156822.0,3600.0,153222.0,False
 95.0,Albania,334863.0,3605.0,331258.0,False
 96.0,Jordan,1746997.0,14122.0,1732875.0,False
-97.0,Saint Vincent and the Grenadines,9674.0,124.0,9550.0,False
+97.0,Saint Vincent And The Grenadines,9674.0,124.0,9550.0,False
 98.0,Turkey,17004714.0,101419.0,16903295.0,False
 99.0,Eswatini,75191.0,1427.0,73764.0,False
 100.0,Guatemala,1250355.0,20215.0,1230140.0,False
@@ -111,15 +111,15 @@ ID,country,confirmed_cases,deaths_cases,recovered_cases,is_western_europe
 110.0,Oman,399449.0,4628.0,394821.0,False
 111.0,Azerbaijan,835371.0,10353.0,825018.0,False
 112.0,Kazakhstan,1503687.0,19072.0,1484615.0,False
-113.0,Saint Kitts and Nevis,6607.0,46.0,6561.0,False
+113.0,Saint Kitts And Nevis,6607.0,46.0,6561.0,False
 114.0,Australia,11846355.0,25166.0,11821189.0,False
 115.0,Fiji,69047.0,885.0,68162.0,False
-116.0,R�union,494595.0,921.0,493674.0,False
+116.0,R�Union,494595.0,921.0,493674.0,False
 117.0,Libya,507269.0,6437.0,500832.0,False
-118.0,Turks and Caicos Islands,6754.0,40.0,6714.0,False
+118.0,Turks And Caicos Islands,6754.0,40.0,6714.0,False
 119.0,Northern Mariana Islands,14656.0,41.0,14615.0,False
 120.0,Mauritius,327305.0,1070.0,326235.0,False
-121.0,Wallis and Futuna,3760.0,9.0,3751.0,False
+121.0,Wallis And Futuna,3760.0,9.0,3751.0,False
 122.0,Sri Lanka,672754.0,16899.0,655855.0,False
 123.0,American Samoa,8359.0,34.0,8325.0,False
 124.0,New Zealand,2587178.0,3976.0,2583202.0,False
@@ -138,13 +138,13 @@ ID,country,confirmed_cases,deaths_cases,recovered_cases,is_western_europe
 137.0,Philippines,4140383.0,66864.0,4073519.0,False
 138.0,Mayotte,42027.0,187.0,41840.0,False
 139.0,Iraq,2465545.0,25375.0,2440170.0,False
-140.0,Federated States of Micronesia,26547.0,65.0,26482.0,False
+140.0,Federated States Of Micronesia,26547.0,65.0,26482.0,False
 141.0,Palau,6332.0,10.0,6322.0,False
 142.0,Cayman Islands,31472.0,37.0,31435.0,False
 143.0,Faroe Islands,34658.0,28.0,34630.0,False
 144.0,Iceland,209938.0,186.0,209752.0,False
 145.0,Thailand,4776096.0,34614.0,4741482.0,False
-146.0,Saint Barth�lemy,5507.0,5.0,5502.0,False
+146.0,Saint Barth�Lemy,5507.0,5.0,5502.0,False
 147.0,Vietnam,11624000.0,43206.0,11580794.0,False
 148.0,Morocco,1279115.0,16305.0,1262810.0,False
 149.0,Marshall Islands,16178.0,17.0,16161.0,False
@@ -155,9 +155,9 @@ ID,country,confirmed_cases,deaths_cases,recovered_cases,is_western_europe
 154.0,Greenland,11971.0,21.0,11950.0,False
 155.0,Myanmar,642138.0,19494.0,622644.0,False
 156.0,Singapore,3006155.0,2024.0,3004131.0,False
-157.0,Sao Tome and Principe,6771.0,80.0,6691.0,False
+157.0,Sao Tome And Principe,6771.0,80.0,6691.0,False
 158.0,Zimbabwe,266362.0,5740.0,260622.0,False
-159.0,Saint Pierre and Miquelon,3426.0,2.0,3424.0,False
+159.0,Saint Pierre And Miquelon,3426.0,2.0,3424.0,False
 160.0,Lesotho,36138.0,709.0,35429.0,False
 161.0,Solomon Islands,25954.0,199.0,25755.0,False
 162.0,Saudi Arabia,841469.0,9646.0,831823.0,False
@@ -201,7 +201,7 @@ ID,country,confirmed_cases,deaths_cases,recovered_cases,is_western_europe
 200.0,Cameroon,125207.0,1974.0,123233.0,False
 201.0,Mozambique,233794.0,2252.0,231542.0,False
 202.0,Papua New Guinea,46864.0,670.0,46194.0,False
-203.0,Republic of the Congo,25219.0,389.0,24830.0,False
+203.0,Republic Of The Congo,25219.0,389.0,24830.0,False
 204.0,Yemen,11945.0,2159.0,9786.0,False
 204.0,Ethiopia,501167.0,7574.0,493593.0,False
 206.0,Liberia,7930.0,294.0,7636.0,False
@@ -219,7 +219,7 @@ ID,country,confirmed_cases,deaths_cases,recovered_cases,is_western_europe
 218.0,Bhutan,62697.0,21.0,62676.0,False
 219.0,Central African Republic,15466.0,113.0,15353.0,False
 220.0,Burkina Faso,22122.0,400.0,21722.0,False
-221.0,Democratic Republic of the Congo,100566.0,1470.0,99096.0,False
+221.0,Democratic Republic Of The Congo,100566.0,1470.0,99096.0,False
 222.0,Sierra Leone,7818.0,125.0,7693.0,False
 223.0,Nigeria,267188.0,3155.0,264033.0,False
 224.0,South Sudan,18823.0,147.0,18676.0,False
