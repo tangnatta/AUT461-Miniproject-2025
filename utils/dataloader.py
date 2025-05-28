@@ -1,15 +1,16 @@
 import pandas as pd
 import os
-from typing import Dict, Optional, List
+from typing import Dict, Optional, List, Union
 
 
 class Dataloader:
+    western_europe_countries: set[str] = {
+        'Belgium', 'France', 'Ireland', 'Luxembourg', 'Monaco',
+        'Netherlands', 'United Kingdom'
+    }
+
     def __init__(self, data_dir: str):
         self.data_dir = data_dir
-        self.western_europe_countries: set[str] = {
-            'Belgium', 'France', 'Ireland', 'Luxembourg', 'Monaco',
-            'Netherlands', 'United Kingdom'
-        }
         self.country_name_mapping = {
             "Republic Of Ireland": "Ireland",
         }
@@ -62,6 +63,52 @@ class Dataloader:
                 f"The file {file_path} does not exist.")
         return file_path
 
+    def fill_missing_dates_in_df_of_every_country(self, df: pd.DataFrame, date_col: str = 'date', group_by: Union[str, List[str]] = 'country') -> pd.DataFrame:
+        """
+        Fill missing dates in the DataFrame for each country or group combination.
+
+        Args:
+            df (pd.DataFrame): The DataFrame to process.
+            date_col (str): The column containing date values.
+            group_by (str or List[str]): The column(s) to group by for filling missing dates.
+
+        Returns:
+            pd.DataFrame: The DataFrame with filled missing dates.
+        """
+        df[date_col] = pd.to_datetime(df[date_col], errors='coerce')
+        # Create a list to hold the filled DataFrames
+        filled_dfs = []
+
+        # Process each group separately
+        for name, group in df.groupby(group_by):
+            # Ensure the group has a date column
+            min_date = group[date_col].min()
+            max_date = group[date_col].max()
+
+            # Get full date range
+            full_date_range = pd.date_range(
+                start=min_date, end=max_date, freq='D')
+
+            # Create a DataFrame with all dates
+            date_df = pd.DataFrame({date_col: full_date_range})
+
+            # Merge with original data to get missing dates
+            merged = pd.merge(date_df, group, on=date_col, how='left')
+
+            # Fill the group_by column(s) with the current group name(s)
+            if isinstance(group_by, list):
+                for i, col in enumerate(group_by):
+                    merged[col] = name[i] if isinstance(name, tuple) else name
+            else:
+                merged[group_by] = name
+
+            # Add to our list
+            filled_dfs.append(merged)
+
+        # Combine all processed groups back into a single DataFrame
+        df = pd.concat(filled_dfs, ignore_index=True)
+        return df
+
     def interpolate_columns(self, df: pd.DataFrame, cols_to_interpolate: List[str], group_by: str) -> pd.DataFrame:
         """
         Interpolate missing values in specified columns grouped by a given column.
@@ -111,6 +158,19 @@ class Dataloader:
         df['country'] = df['country'].apply(self.normalize_country_name)
         df['is_western_europe'] = df['country'].apply(self.is_western_europe)
 
+        # Check if date column exists before filling missing dates
+        if 'date' in df.columns:
+            df = self.fill_missing_dates_in_df_of_every_country(
+                df, date_col='date', group_by='country')
+
+            # Define columns to interpolate
+            cols_to_interpolate = ['confirmed_cases',
+                                   'deaths_cases', 'recovered_cases']
+
+            # Interpolate missing values
+            df = self.interpolate_columns(
+                df, cols_to_interpolate, group_by='country')
+
         return df
 
     def load_covid19_testing_record(self, file_name: str = "Covid19-TestingRecord.csv") -> pd.DataFrame:
@@ -157,6 +217,10 @@ class Dataloader:
 
         df['country'] = df['country'].apply(self.normalize_country_name)
         df['is_western_europe'] = df['country'].apply(self.is_western_europe)
+
+        # Fill missing dates for each country
+        df = self.fill_missing_dates_in_df_of_every_country(
+            df, date_col='date', group_by='country')
 
         # Columns to interpolate
         cols_to_interpolate = [
@@ -212,6 +276,20 @@ class Dataloader:
         df.drop_duplicates(subset=['country', 'date', 'variant', 'number_of_sequences',
                            'percentage_of_sequences', 'total_sequences'], inplace=True)
 
+        # Fill missing dates for each country-variant combination
+        # Note: For variants, we need to group by both country and variant
+        df = self.fill_missing_dates_in_df_of_every_country(
+            df, date_col='date', group_by=['country', 'variant'])
+
+        # Define columns to interpolate
+        cols_to_interpolate = [
+            'number_of_sequences', 'percentage_of_sequences', 'total_sequences'
+        ]
+
+        # Interpolate missing values for each country-variant combination
+        df = self.interpolate_columns(
+            df, cols_to_interpolate, group_by=['country', 'variant'])
+
         return df
 
     # TODO: Transform the data in to better show the vaccines used
@@ -258,6 +336,10 @@ class Dataloader:
         df['country'] = df['country'].apply(self.normalize_country_name)
         df['is_western_europe'] = df['country'].apply(self.is_western_europe)
 
+        # Fill missing dates for each country
+        df = self.fill_missing_dates_in_df_of_every_country(
+            df, date_col='date', group_by='country')
+
         # Columns to interpolate
         cols_to_interpolate = [
             'total_vaccinations', 'people_vaccinated', 'people_fully_vaccinated',
@@ -303,6 +385,14 @@ class Dataloader:
 
         df['country'] = df['country'].apply(self.normalize_country_name)
         df['is_western_europe'] = df['country'].apply(self.is_western_europe)
+
+        # Fill missing dates for each country-manufacturer combination
+        df = self.fill_missing_dates_in_df_of_every_country(
+            df, date_col='date', group_by=['country', 'manufacturer'])
+
+        # Interpolate total_vaccinations for each country-manufacturer combination
+        df = self.interpolate_columns(
+            df, ['total_vaccinations'], group_by=['country', 'manufacturer'])
 
         return df
 
