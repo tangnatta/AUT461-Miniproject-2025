@@ -158,19 +158,6 @@ class Dataloader:
         df['country'] = df['country'].apply(self.normalize_country_name)
         df['is_western_europe'] = df['country'].apply(self.is_western_europe)
 
-        # Check if date column exists before filling missing dates
-        if 'date' in df.columns:
-            df = self.fill_missing_dates_in_df_of_every_country(
-                df, date_col='date', group_by='country')
-
-            # Define columns to interpolate
-            cols_to_interpolate = ['confirmed_cases',
-                                   'deaths_cases', 'recovered_cases']
-
-            # Interpolate missing values
-            df = self.interpolate_columns(
-                df, cols_to_interpolate, group_by='country')
-
         return df
 
     def load_covid19_testing_record(self, file_name: str = "Covid19-TestingRecord.csv") -> pd.DataFrame:
@@ -216,11 +203,12 @@ class Dataloader:
         df['tested_type'] = df['entity'].str.split(" - ").str[1]
 
         df['country'] = df['country'].apply(self.normalize_country_name)
-        df['is_western_europe'] = df['country'].apply(self.is_western_europe)
 
         # Fill missing dates for each country
         df = self.fill_missing_dates_in_df_of_every_country(
             df, date_col='date', group_by='country')
+
+        df['is_western_europe'] = df['country'].apply(self.is_western_europe)
 
         # Columns to interpolate
         cols_to_interpolate = [
@@ -334,11 +322,12 @@ class Dataloader:
             df['date'], format='%Y-%m-%d', errors='coerce')
 
         df['country'] = df['country'].apply(self.normalize_country_name)
-        df['is_western_europe'] = df['country'].apply(self.is_western_europe)
 
         # Fill missing dates for each country
         df = self.fill_missing_dates_in_df_of_every_country(
             df, date_col='date', group_by='country')
+
+        df['is_western_europe'] = df['country'].apply(self.is_western_europe)
 
         # Columns to interpolate
         cols_to_interpolate = [
@@ -384,12 +373,13 @@ class Dataloader:
             df['date'], format='%Y-%m-%d', errors='coerce')
 
         df['country'] = df['country'].apply(self.normalize_country_name)
-        df['is_western_europe'] = df['country'].apply(self.is_western_europe)
 
         # Fill missing dates for each country-manufacturer combination
         df = self.fill_missing_dates_in_df_of_every_country(
             df, date_col='date', group_by=['country', 'manufacturer'])
 
+        df['is_western_europe'] = df['country'].apply(self.is_western_europe)
+        
         # Interpolate total_vaccinations for each country-manufacturer combination
         df = self.interpolate_columns(
             df, ['total_vaccinations'], group_by=['country', 'manufacturer'])
