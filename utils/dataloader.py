@@ -231,7 +231,6 @@ class Dataloader:
         df['date'] = pd.to_datetime(
             df['date'], format='%Y-%m-%d', errors='coerce')
 
-        df['country'] = df['country'].apply(self.normalize_country_name)
         df['country'] = df['entity'].str.split(" - ").str[0]
         df['tested_type'] = df['entity'].str.split(" - ").str[1]
 
