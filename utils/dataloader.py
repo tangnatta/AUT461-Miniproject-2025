@@ -256,18 +256,18 @@ class Dataloader:
             df['date'], format='%Y-%m-%d', errors='coerce')
 
         df['country'] = df['country'].apply(self.normalize_country_name)
-        df['is_western_europe'] = df['country'].apply(self.is_western_europe)
 
         # remove duplication of "other" variants and "non-who" variants
-        df['variant'] = df['variant'].replace(
-            {'other': 'other', 'non-who': 'other'})
-        df.drop_duplicates(subset=['country', 'date', 'variant', 'number_of_sequences',
-                           'percentage_of_sequences', 'total_sequences'], inplace=True)
+        # df['variant'] = df['variant'].replace(
+        #     {'other': 'other', 'non-who': 'other'})
+        # df.drop_duplicates(subset=['country', 'date', 'variant', 'number_of_sequences',
+        #                    'percentage_of_sequences', 'total_sequences'], inplace=True)
 
         # Fill missing dates for each country-variant combination
         # Note: For variants, we need to group by both country and variant
         df = self.fill_missing_dates_in_df_of_every_country(
             df, date_col='date', group_by=['country', 'variant'])
+        df['is_western_europe'] = df['country'].apply(self.is_western_europe)
 
         # Define columns to interpolate
         cols_to_interpolate = [
@@ -379,7 +379,7 @@ class Dataloader:
             df, date_col='date', group_by=['country', 'manufacturer'])
 
         df['is_western_europe'] = df['country'].apply(self.is_western_europe)
-        
+
         # Interpolate total_vaccinations for each country-manufacturer combination
         df = self.interpolate_columns(
             df, ['total_vaccinations'], group_by=['country', 'manufacturer'])
