@@ -61,7 +61,7 @@ ID,country,confirmed_cases,deaths_cases,recovered_cases,is_western_europe
 60.0,Lebanon,1239904.0,10947.0,1228957.0,False
 61.0,Andorra,48015.0,159.0,47856.0,False
 62.0,Panama,1044336.0,8704.0,1035632.0,False
-63.0,Republic Of Ireland,1736068.0,9604.0,1726464.0,False
+63.0,Ireland,1736068.0,9604.0,1726464.0,False
 64.0,Grenada,19693.0,238.0,19455.0,False
 65.0,Monaco,17181.0,67.0,17114.0,True
 66.0,Bolivia,1212131.0,22387.0,1189744.0,False
